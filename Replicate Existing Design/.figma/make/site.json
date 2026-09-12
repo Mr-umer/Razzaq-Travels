@@ -1,0 +1,10 @@
+{
+  "description": "Easily replicate and customize designs with this intuitive web application, perfect for designers and businesses seeking efficient visual solutions.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Poppins', sans-serif;
+  --color-teal-primary: #24C4B5;
+  --color-navy-dark: #14263D;
+  --color-bg-mint: #EDF9F8;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #24C4B5 #EDF9F8;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #EDF9F8;
+  color: #14263D;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* App Container */
+.app-floating-panel {
+  background: #EDF9F8;
+  min-height: 100vh;
+}
+
+/* Accent Pill Button */
+.accent-btn-pill {
+  background-color: #24C4B5;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 18px rgba(36, 196, 181, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.accent-btn-pill:hover {
+  background-color: #1eb3a4;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(36, 196, 181, 0.45);
+}
+
+.accent-btn-pill:active {
+  transform: translateY(0);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EDF9F8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #24C4B5;
+  border-radius: 3px;
+}
+
+/* Hide browser default date/time picker icons */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+  -webkit-appearance: none;
+}
+
+/* Theme accent color & styling for date & time pickers */
+input[type="date"],
+input[type="time"] {
+  accent-color: #24C4B5;
+  color-scheme: light;
+}
+
+::-webkit-datetime-edit-text {
+  color: #24C4B5;
+  font-weight: 700;
+  padding: 0 1px;
+}
+
+::-webkit-datetime-edit-month-field,
+::-webkit-datetime-edit-day-field,
+::-webkit-datetime-edit-year-field,
+::-webkit-datetime-edit-hour-field,
+::-webkit-datetime-edit-minute-field,
+::-webkit-datetime-edit-ampm-field {
+  color: #14263D;
+  font-weight: 700;
+}
+
+::-webkit-datetime-edit-month-field:focus,
+::-webkit-datetime-edit-day-field:focus,
+::-webkit-datetime-edit-year-field:focus,
+::-webkit-datetime-edit-hour-field:focus,
+::-webkit-datetime-edit-minute-field:focus,
+::-webkit-datetime-edit-ampm-field:focus {
+  background-color: #24C4B5;
+  color: #FFFFFF;
+  border-radius: 4px;
+}
+
+/* ══════════════ ENTRANCE ANIMATIONS ══════════════ */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRightCar {
+  0% {
+    opacity: 0;
+    transform: translateX(45px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-navbar {
+  animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-hero-text {
+  animation: fadeInUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.18s forwards;
+  opacity: 0;
+}
+
+.animate-hero-car {
+  animation: fadeInRightCar 1.05s cubic-bezier(0.16, 1, 0.3, 1) 0.38s forwards;
+  opacity: 0;
+}
+
+.animate-search-card {
+  animation: fadeInUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.58s forwards;
+  opacity: 0;
+}
+
+.animate-section-reveal {
+  animation: fadeInUp 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.78s forwards;
+  opacity: 0;
+}

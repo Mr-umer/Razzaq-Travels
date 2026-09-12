@@ -1,0 +1,10 @@
+{
+  "description": "Connect with Razzaq Travels for premium chauffeur-driven airport transfers and short trips, ensuring reliable service with professional drivers.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
