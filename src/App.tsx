@@ -610,7 +610,7 @@ export default function App() {
       </section>
 
       {/* ══════════════ FLOATING SEARCH / BOOKING BAR ══════════════ */}
-      <section className="px-6 md:px-16 -mt-8 relative z-30 mb-20 max-w-[1340px] mx-auto animate-search-card">
+      <section className="px-6 md:px-16 -mt-8 relative z-30 mb-28 sm:mb-20 max-w-[1340px] mx-auto animate-search-card">
         <form
           onSubmit={handleSearchSubmit}
           className="bg-white rounded-3xl lg:rounded-full p-4 lg:p-3 shadow-[0_20px_40px_rgba(0,0,0,0.06)] border border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-0 items-center"
