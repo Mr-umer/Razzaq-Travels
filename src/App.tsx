@@ -521,17 +521,10 @@ export default function App() {
           src={heroImg}
           aria-hidden="true"
           alt=""
-          className="animate-hero-car hidden lg:block"
+          className="animate-hero-car absolute top-[-60px] -right-20 sm:-right-10 lg:top-[-130px] lg:left-0 w-[110%] sm:w-[85%] lg:w-full max-w-none lg:max-w-none h-auto pointer-events-none select-none opacity-30 lg:opacity-100"
           style={{
-            position: "absolute",
-            top: "-130px",
-            left: 0,
-            width: "100%",
-            height: "auto",
-            pointerEvents: "none",
-            userSelect: "none",
-            WebkitMaskImage: "linear-gradient(to right, transparent 45%, black 49.5%)",
-            maskImage: "linear-gradient(to right, transparent 45%, black 49.5%)",
+            WebkitMaskImage: "linear-gradient(to right, transparent 40%, black 50%)",
+            maskImage: "linear-gradient(to right, transparent 40%, black 50%)",
           }}
         />
 
@@ -604,15 +597,6 @@ export default function App() {
                 <ClockBadgeIcon />
                 <span className="text-[11px] sm:text-xs font-semibold text-[#6b7f96]">24/7 Availability</span>
               </div>
-            </div>
-
-            {/* Mobile & Tablet Hero Car Display */}
-            <div className="lg:hidden mt-6 -mb-4 flex justify-center animate-hero-car pointer-events-none select-none">
-              <img
-                src={corollaGliImg}
-                alt="Razzaq Travels Hero Car"
-                className="w-[90%] max-w-[320px] sm:max-w-[400px] h-auto object-contain drop-shadow-[0_15px_30px_rgba(36,196,181,0.25)]"
-              />
             </div>
           </div>
         </div>
