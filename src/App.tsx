@@ -492,19 +492,19 @@ export default function App() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          paddingTop: 22,
-          paddingBottom: 22,
+          paddingTop: 18,
+          paddingBottom: 18,
           position: "relative",
           zIndex: 20,
         }}
-        className="px-6 md:px-16 animate-navbar"
+        className="pl-3.5 pr-5 md:px-16 animate-navbar"
       >
         {/* Logo */}
         <a href="#" style={{ display: "block" }}>
           <img
             src={logoImg}
             alt="Razzaq Travels"
-            className="h-14 sm:h-20 w-auto mix-blend-multiply block"
+            className="h-[68px] sm:h-20 w-auto mix-blend-multiply block -ml-1 sm:ml-0"
           />
         </a>
 
