@@ -522,6 +522,15 @@ export default function App() {
           }}
         />
 
+        {/* Mobile Compact Hero Car Overlay */}
+        <div className="lg:hidden absolute top-8 right-2 sm:right-6 z-0 pointer-events-none select-none animate-hero-car">
+          <img
+            src={corollaGliImg}
+            alt="Hero Car"
+            className="w-36 sm:w-52 h-auto object-contain drop-shadow-[0_10px_20px_rgba(36,196,181,0.2)] opacity-85"
+          />
+        </div>
+
         {/* Top Gradient Mask */}
         <div
           style={{
