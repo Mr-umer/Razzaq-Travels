@@ -605,6 +605,15 @@ export default function App() {
                 <span className="text-[11px] sm:text-xs font-semibold text-[#6b7f96]">24/7 Availability</span>
               </div>
             </div>
+
+            {/* Mobile & Tablet Hero Car Display */}
+            <div className="lg:hidden mt-6 -mb-4 flex justify-center animate-hero-car pointer-events-none select-none">
+              <img
+                src={corollaGliImg}
+                alt="Razzaq Travels Hero Car"
+                className="w-[90%] max-w-[320px] sm:max-w-[400px] h-auto object-contain drop-shadow-[0_15px_30px_rgba(36,196,181,0.25)]"
+              />
+            </div>
           </div>
         </div>
       </section>
