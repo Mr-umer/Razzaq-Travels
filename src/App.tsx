@@ -135,6 +135,24 @@ function ClockIcon() {
   )
 }
 
+function CarIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.teal} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+      <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H7c-.7 0-1.3.3-1.7.8L3.2 10.5C2.5 10.9 2 11.7 2 12.5V16c0 .6.4 1 1 1h2" />
+      <circle cx="7" cy="17" r="2.5" />
+      <circle cx="17" cy="17" r="2.5" />
+    </svg>
+  )
+}
+
+function ChevronDownIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6b7f96" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="shrink-0 pointer-events-none">
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  )
+}
+
 function StarIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill={C.teal} stroke="none">
@@ -359,7 +377,7 @@ export default function App() {
 
   function handleSearchSubmit(e?: React.FormEvent) {
     if (e) e.preventDefault()
-    window.open(buildWhatsAppLink(pickupLocation, dropoffLocation, pickupDate, pickupTime), "_blank")
+    window.open(buildWhatsAppLink(pickupLocation, dropoffLocation, pickupDate, pickupTime, selectedCar), "_blank")
   }
 
   function handleBookCar(carName: string) {
@@ -592,10 +610,10 @@ export default function App() {
       <section className="px-6 md:px-16 mt-3 lg:-mt-8 relative z-30 mb-20 sm:mb-20 max-w-[1340px] mx-auto animate-search-card">
         <form
           onSubmit={handleSearchSubmit}
-          className="bg-white rounded-3xl lg:rounded-full p-4 lg:p-3 shadow-[0_20px_40px_rgba(0,0,0,0.06)] border border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-0 items-center"
+          className="bg-white rounded-3xl lg:rounded-full p-4 lg:p-3 shadow-[0_20px_40px_rgba(0,0,0,0.06)] border border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-0 items-center"
         >
           {/* Pick-up Location */}
-          <div className="px-6 lg:border-r border-slate-100 py-1 relative">
+          <div className="px-4 lg:px-5 lg:border-r border-slate-100 py-1 relative">
             <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
               Pick-up Location
             </label>
@@ -612,7 +630,7 @@ export default function App() {
           </div>
 
           {/* Drop-off Location */}
-          <div className="px-6 lg:border-r border-slate-100 py-1 relative">
+          <div className="px-4 lg:px-5 lg:border-r border-slate-100 py-1 relative">
             <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
               Drop-off Location
             </label>
@@ -628,8 +646,34 @@ export default function App() {
             </div>
           </div>
 
+          {/* Select Car */}
+          <div className="px-4 lg:px-5 lg:border-r border-slate-100 py-1 relative">
+            <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+              Select Car
+            </label>
+            <div className="flex items-center gap-2 relative">
+              <CarIcon />
+              <select
+                value={selectedCar || ""}
+                onChange={(e) => setSelectedCar(e.target.value)}
+                className="w-full text-[13px] font-bold text-slate-800 bg-transparent focus:outline-none cursor-pointer appearance-none pr-5 placeholder-slate-400 truncate"
+              >
+                <option value="">Select Car Model...</option>
+                <option value="Toyota Corolla GLi">Toyota Corolla GLi</option>
+                <option value="Honda Civic Oriel">Honda Civic Oriel</option>
+                <option value="Toyota Hilux Vigo 4x4">Toyota Hilux Vigo 4x4</option>
+                <option value="Toyota Fortuner">Toyota Fortuner</option>
+                <option value="Toyota HiAce Grand Cabin">Toyota HiAce Grand Cabin</option>
+                <option value="Coaster Bus (Saloon)">Coaster Bus (Saloon)</option>
+              </select>
+              <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
+                <ChevronDownIcon />
+              </div>
+            </div>
+          </div>
+
           {/* Pick-up Date */}
-          <div className="px-6 lg:border-r border-slate-100 py-1 relative">
+          <div className="px-4 lg:px-5 lg:border-r border-slate-100 py-1 relative">
             <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
               Pick-up Date
             </label>
@@ -655,7 +699,7 @@ export default function App() {
           </div>
 
           {/* Pick-up Time */}
-          <div className="px-6 lg:border-r border-slate-100 py-1 relative">
+          <div className="px-4 lg:px-5 lg:border-r border-slate-100 py-1 relative">
             <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
               Pick-up Time
             </label>
@@ -695,7 +739,7 @@ export default function App() {
           <div className="p-1">
             <button
               type="submit"
-              className="accent-btn-pill w-full py-4 rounded-full text-[13px] font-bold text-white uppercase tracking-wide"
+              className="accent-btn-pill w-full py-4 rounded-full text-[12px] xl:text-[13px] font-bold text-white uppercase tracking-wide px-2 whitespace-nowrap"
             >
               BOOK WITH DRIVER
             </button>
