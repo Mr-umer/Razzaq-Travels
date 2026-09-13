@@ -394,7 +394,7 @@ export default function App() {
           <img
             src={logoImg}
             alt="Razzaq Travels"
-            className="h-10 sm:h-16 w-auto mix-blend-multiply block"
+            className="h-14 sm:h-20 w-auto mix-blend-multiply block"
           />
         </a>
 
@@ -523,11 +523,11 @@ export default function App() {
         />
 
         {/* Mobile Compact Hero Car Overlay */}
-        <div className="lg:hidden absolute top-8 right-2 sm:right-6 z-0 pointer-events-none select-none animate-hero-car">
+        <div className="lg:hidden absolute top-1 right-1 sm:right-6 z-0 pointer-events-none select-none animate-hero-car">
           <img
             src={corollaGliImg}
             alt="Hero Car"
-            className="w-36 sm:w-52 h-auto object-contain drop-shadow-[0_10px_20px_rgba(36,196,181,0.2)] opacity-85"
+            className="w-36 sm:w-52 h-auto object-contain drop-shadow-[0_10px_20px_rgba(36,196,181,0.2)] opacity-90"
           />
         </div>
 
