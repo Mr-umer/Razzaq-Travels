@@ -509,22 +509,16 @@ export default function App() {
       </header>
 
       {/* ══════════════ HERO SECTION ══════════════ */}
-      <section
-        style={{
-          position: "relative",
-          overflow: "hidden",
-          minHeight: "clamp(480px, 55vw, 580px)",
-        }}
-      >
+      <section className="relative overflow-hidden min-h-0 lg:min-h-[580px]">
         {/* Reference Image Background Overlay */}
         <img
           src={heroImg}
           aria-hidden="true"
           alt=""
-          className="animate-hero-car absolute top-[-60px] -right-20 sm:-right-10 lg:top-[-130px] lg:left-0 w-[110%] sm:w-[85%] lg:w-full max-w-none lg:max-w-none h-auto pointer-events-none select-none opacity-30 lg:opacity-100"
+          className="animate-hero-car absolute top-[-130px] left-0 w-full h-auto pointer-events-none select-none hidden lg:block"
           style={{
-            WebkitMaskImage: "linear-gradient(to right, transparent 40%, black 50%)",
-            maskImage: "linear-gradient(to right, transparent 40%, black 50%)",
+            WebkitMaskImage: "linear-gradient(to right, transparent 45%, black 49.5%)",
+            maskImage: "linear-gradient(to right, transparent 45%, black 49.5%)",
           }}
         />
 
@@ -551,40 +545,23 @@ export default function App() {
             alignItems: "center",
             height: "100%",
           }}
-          className="px-6 md:px-16 pt-8 pb-12"
+          className="px-6 md:px-16 pt-4 pb-4 lg:pt-8 lg:pb-12"
         >
           <div className="w-full lg:w-[46%] max-w-[620px] animate-hero-text">
             {/* Headline */}
-            <h1
-              style={{
-                fontSize: "clamp(34px, 7.5vw, 76px)",
-                fontWeight: 900,
-                color: C.teal,
-                lineHeight: 1.05,
-                margin: "0 0 16px 0",
-                letterSpacing: "-0.01em",
-              }}
-            >
+            <h1 className="text-[36px] sm:text-6xl lg:text-[84px] font-black text-[#24C4B5] leading-[1.05] tracking-tight mb-3">
               Comfortable
               <br />
               Journeys
             </h1>
 
             {/* Subheadline */}
-            <p
-              style={{
-                fontSize: 15,
-                fontWeight: 400,
-                color: "#6b7f96",
-                lineHeight: 1.6,
-                margin: "0 0 28px 0",
-              }}
-            >
+            <p className="text-sm sm:text-base text-[#6b7f96] font-normal leading-relaxed mb-5 max-w-lg">
               Car booking with professional driver & 24/7 VIP airport pick & drop services across Pakistan
             </p>
 
             {/* Feature Badges */}
-            <div className="grid grid-cols-3 gap-2 sm:flex sm:items-center sm:gap-0 border-t sm:border-t-0 border-slate-200/60 pt-4 sm:pt-0">
+            <div className="grid grid-cols-3 gap-2 sm:flex sm:items-center sm:gap-0 border-t sm:border-t-0 border-slate-200/60 pt-3 sm:pt-0">
               <div className="flex flex-col items-center gap-1.5 text-center sm:pr-6">
                 <ShieldIcon />
                 <span className="text-[11px] sm:text-xs font-semibold text-[#6b7f96]">With Driver</span>
@@ -603,7 +580,7 @@ export default function App() {
       </section>
 
       {/* ══════════════ FLOATING SEARCH / BOOKING BAR ══════════════ */}
-      <section className="px-6 md:px-16 -mt-8 relative z-30 mb-28 sm:mb-20 max-w-[1340px] mx-auto animate-search-card">
+      <section className="px-6 md:px-16 mt-3 lg:-mt-8 relative z-30 mb-20 sm:mb-20 max-w-[1340px] mx-auto animate-search-card">
         <form
           onSubmit={handleSearchSubmit}
           className="bg-white rounded-3xl lg:rounded-full p-4 lg:p-3 shadow-[0_20px_40px_rgba(0,0,0,0.06)] border border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-0 items-center"
