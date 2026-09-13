@@ -16,6 +16,30 @@ const C = {
 const PHONE_NUMBER = "0325 0111015"
 const WA_PHONE = "923250111015"
 
+const LISTED_CARS = [
+  {
+    id: "corolla",
+    name: "Toyota Corolla GLi",
+    type: "Executive Sedan (With Driver)",
+    tag: "Most Popular",
+    img: corollaGliImg,
+  },
+  {
+    id: "civic",
+    name: "Honda Civic Oriel",
+    type: "Premium Sedan (With Driver)",
+    tag: "Best Value",
+    img: hondaCivicImg,
+  },
+  {
+    id: "vigo",
+    name: "Toyota Hilux Vigo 4x4",
+    type: "VIP Double Cab SUV (With Driver)",
+    tag: "VIP Choice",
+    img: toyotaVigoImg,
+  },
+]
+
 function formatDateDisplay(dStr: string) {
   if (!dStr) return "Add date"
   if (!dStr.includes("-")) return dStr
@@ -356,6 +380,72 @@ function CustomTimePicker({
   )
 }
 
+/* ─── Custom Car Selection Picker with Car Images ─── */
+function CustomCarPicker({
+  value,
+  onSelect,
+  onClose,
+  position = "down",
+}: {
+  value?: string
+  onSelect: (carName: string) => void
+  onClose: () => void
+  position?: "down" | "up"
+}) {
+  return (
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className={`absolute ${position === "up" ? "bottom-full mb-3 left-0" : "top-full mt-3 left-0"} z-50 bg-white rounded-3xl p-3 shadow-[0_20px_50px_rgba(0,0,0,0.18)] border border-slate-100 w-[280px] sm:w-80 font-sans select-none`}
+    >
+      <div className="flex items-center justify-between mb-2.5 px-2 pt-1">
+        <span className="text-xs font-extrabold text-[#14263D]">Select Listed Vehicle</span>
+        <span className="text-[10px] font-bold text-[#24C4B5] bg-[#EDF9F8] px-2.5 py-0.5 rounded-full">
+          With Driver
+        </span>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        {LISTED_CARS.map((car) => {
+          const isSelected = value === car.name
+          return (
+            <div
+              key={car.id}
+              onClick={() => {
+                onSelect(car.name)
+                onClose()
+              }}
+              className={`flex items-center gap-3 p-2.5 rounded-2xl cursor-pointer transition-all ${
+                isSelected
+                  ? "bg-[#EDF9F8] border border-[#24C4B5]/40 shadow-xs"
+                  : "bg-[#F8FCFC] hover:bg-[#EDF9F8]/60 border border-transparent"
+              }`}
+            >
+              <div className="w-14 h-10 rounded-xl bg-white p-1 flex items-center justify-center border border-slate-100 shrink-0 shadow-xs">
+                <img
+                  src={car.img}
+                  alt={car.name}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-[13px] font-extrabold text-[#14263D] truncate">{car.name}</h4>
+                  {isSelected && (
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#24C4B5] shrink-0 ml-1" />
+                  )}
+                </div>
+                <p className="text-[10px] font-semibold text-[#58708A] mt-0.5">
+                  {car.type.replace(" (With Driver)", "")}
+                </p>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 export default function App() {
   const todayStr = new Date().toISOString().split("T")[0]
   const [pickupLocation, setPickupLocation] = useState("")
@@ -363,9 +453,11 @@ export default function App() {
   const [pickupDate, setPickupDate] = useState(todayStr)
   const [pickupTime, setPickupTime] = useState("12:00 pm")
   const [modalOpen, setModalOpen] = useState(false)
-  const [selectedCar, setSelectedCar] = useState<string | undefined>()
+  const [selectedCar, setSelectedCar] = useState<string>("Toyota Corolla GLi")
   const [mobileNavOpen, setMobileNavOpen] = useState(false)
-  const [activePicker, setActivePicker] = useState<"pDate" | "pTime" | "mPDate" | "mPTime" | null>(null)
+  const [activePicker, setActivePicker] = useState<"pDate" | "pTime" | "car" | "mPDate" | "mPTime" | null>(null)
+
+  const selectedCarObj = LISTED_CARS.find((c) => c.name === selectedCar) || LISTED_CARS[0]
 
   useEffect(() => {
     function handleClickOutside() {
@@ -651,25 +743,38 @@ export default function App() {
             <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">
               Select Car
             </label>
-            <div className="flex items-center gap-2 relative">
-              <CarIcon />
-              <select
-                value={selectedCar || ""}
-                onChange={(e) => setSelectedCar(e.target.value)}
-                className="w-full text-[13px] font-bold text-slate-800 bg-transparent focus:outline-none cursor-pointer appearance-none pr-5 placeholder-slate-400 truncate"
-              >
-                <option value="">Select Car Model...</option>
-                <option value="Toyota Corolla GLi">Toyota Corolla GLi</option>
-                <option value="Honda Civic Oriel">Honda Civic Oriel</option>
-                <option value="Toyota Hilux Vigo 4x4">Toyota Hilux Vigo 4x4</option>
-                <option value="Toyota Fortuner">Toyota Fortuner</option>
-                <option value="Toyota HiAce Grand Cabin">Toyota HiAce Grand Cabin</option>
-                <option value="Coaster Bus (Saloon)">Coaster Bus (Saloon)</option>
-              </select>
-              <div className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none">
-                <ChevronDownIcon />
+            <div
+              onClick={(e) => {
+                e.stopPropagation()
+                setActivePicker(activePicker === "car" ? null : "car")
+              }}
+              className="flex items-center justify-between gap-2 cursor-pointer group select-none"
+            >
+              <div className="flex items-center gap-2 min-w-0">
+                {selectedCarObj ? (
+                  <div className="w-8 h-5 rounded bg-[#EDF9F8] p-0.5 flex items-center justify-center border border-[#24C4B5]/40 shrink-0">
+                    <img
+                      src={selectedCarObj.img}
+                      alt={selectedCarObj.name}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                ) : (
+                  <CarIcon />
+                )}
+                <span className="text-[13px] font-bold text-slate-800 truncate">
+                  {selectedCar || "Toyota Corolla GLi"}
+                </span>
               </div>
+              <ChevronDownIcon />
             </div>
+            {activePicker === "car" && (
+              <CustomCarPicker
+                value={selectedCar || "Toyota Corolla GLi"}
+                onSelect={setSelectedCar}
+                onClose={() => setActivePicker(null)}
+              />
+            )}
           </div>
 
           {/* Pick-up Date */}
@@ -761,29 +866,7 @@ export default function App() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            {
-              id: 1,
-              name: "Toyota Corolla GLi",
-              type: "Executive Sedan (With Driver)",
-              tag: "Most Popular",
-              img: corollaGliImg,
-            },
-            {
-              id: 2,
-              name: "Honda Civic Oriel",
-              type: "Premium Sedan (With Driver)",
-              tag: "Best Value",
-              img: hondaCivicImg,
-            },
-            {
-              id: 3,
-              name: "Toyota Hilux Vigo 4x4",
-              type: "VIP Double Cab SUV (With Driver)",
-              tag: "VIP Choice",
-              img: toyotaVigoImg,
-            },
-          ].map((car) => (
+          {LISTED_CARS.map((car) => (
             <div
               key={car.id}
               className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
