@@ -382,7 +382,8 @@ export default function App() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          padding: "22px 60px",
+          paddingTop: 22,
+          paddingBottom: 22,
           position: "relative",
           zIndex: 20,
         }}
@@ -561,7 +562,6 @@ export default function App() {
             display: "flex",
             alignItems: "center",
             height: "100%",
-            padding: "0 60px",
           }}
           className="px-6 md:px-16 pt-8 pb-12"
         >
